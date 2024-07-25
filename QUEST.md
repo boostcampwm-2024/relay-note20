@@ -119,3 +119,23 @@ let 최경일 = { quest6 : “동료와 함께 성장하기 위해서 자신이 
 
 **어제 시도하지 않았던 새로운 일?**<br>
 오늘 미션 CS 부분의 이해가 부족한 것 같아서 구현을 뒤로 미뤄두고 학습에 집중했다. 코어 타임이 끝날 때까지 구현에 들어가지 않았던 적이 없어서 약간의 불안함도 있었지만 학습에 집중할 수 있는 시간을 가질 수 있어 좋았다.
+
+#### 24.07.26
+**발생한 오류**<br>
+`Cannot call value of non-function type 'Movie'`<br>
+
+```swift
+func display(_ clousure: (Movie) ){
+    movies.forEach{ clousure($0) } // Cannot call value of non-function type 'Movie'
+  }
+```
+
+**오류의 원인을 기록**<br>
+void를 붙이지 않으면 에러가 나는 이유는, forEach가 내부에서 값을 Generic하게 받기 때문에<br>
+clousure의 리턴타입을 명시하지 않으면 리턴값이 무언인지 forEach가 알 수 없기 때문이다.<br>
+
+```swift
+func display(_ clousure: (Movie)->Void){
+    movies.forEach{ clousure($0) }
+}
+```

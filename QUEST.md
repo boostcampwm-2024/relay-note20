@@ -105,6 +105,26 @@ let 최경일 = { quest6 : “동료와 함께 성장하기 위해서 자신이 
 1. os에 따라서 어제배웠던 다형성을 다뤘다면 훨씬 구현이 편했을 것 같다 → Path라는 상위클래스를 하위클래스로 바꿔야할 것 같은데 확실한 구성이 잡히지 않아서 모르겠다.
 2. os를 path객체 내에서 osName으로 판별을 했는데 확실히 객체로 관리했더라면 “이놈 코드 좀 칠줄아나?”할 것같았는데 아직은 살짝 모자른것같다.. 앞으로도 화이팅!
 
+### 김윤회 : quest 2
+**발생한 오류**<br>
+`Cannot call value of non-function type 'Movie'`<br>
+
+```swift
+func display(_ clousure: (Movie) ){
+    movies.forEach{ clousure($0) } // Cannot call value of non-function type 'Movie'
+  }
+```
+
+**오류의 원인을 기록**<br>
+void를 붙이지 않으면 에러가 나는 이유는, forEach가 내부에서 값을 Generic하게 받기 때문에<br>
+clousure의 리턴타입을 명시하지 않으면 리턴값이 무언인지 forEach가 알 수 없기 때문이다.<br>
+
+```swift
+func display(_ clousure: (Movie)->Void){
+    movies.forEach{ clousure($0) }
+}
+```
+
 ### 한윤서 : quest 4
 
 - 직접적인 코드를 기록하는 것은 힘들지만 막힐때마다 시간이 오래 걸리더라도 차분히, 작은것부터 만들어가기 위해 노력했던 것 같습니다
@@ -127,22 +147,4 @@ let 최경일 = { quest6 : “동료와 함께 성장하기 위해서 자신이 
 **어제 시도하지 않았던 새로운 일?**<br>
 오늘 미션 CS 부분의 이해가 부족한 것 같아서 구현을 뒤로 미뤄두고 학습에 집중했다. 코어 타임이 끝날 때까지 구현에 들어가지 않았던 적이 없어서 약간의 불안함도 있었지만 학습에 집중할 수 있는 시간을 가질 수 있어 좋았다.
 
-#### 24.07.26
-**발생한 오류**<br>
-`Cannot call value of non-function type 'Movie'`<br>
 
-```swift
-func display(_ clousure: (Movie) ){
-    movies.forEach{ clousure($0) } // Cannot call value of non-function type 'Movie'
-  }
-```
-
-**오류의 원인을 기록**<br>
-void를 붙이지 않으면 에러가 나는 이유는, forEach가 내부에서 값을 Generic하게 받기 때문에<br>
-clousure의 리턴타입을 명시하지 않으면 리턴값이 무언인지 forEach가 알 수 없기 때문이다.<br>
-
-```swift
-func display(_ clousure: (Movie)->Void){
-    movies.forEach{ clousure($0) }
-}
-```
